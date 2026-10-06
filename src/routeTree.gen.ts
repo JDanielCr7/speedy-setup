@@ -10,33 +10,79 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AnalisisRouteImport } from './routes/analisis'
+import { Route as HistorialRouteImport } from './routes/historial'
+import { Route as PrediccionesRouteImport } from './routes/predicciones'
+import { Route as RegistrarRouteImport } from './routes/registrar'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AnalisisRoute = AnalisisRouteImport.update({
+  id: '/analisis',
+  path: '/analisis',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HistorialRoute = HistorialRouteImport.update({
+  id: '/historial',
+  path: '/historial',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrediccionesRoute = PrediccionesRouteImport.update({
+  id: '/predicciones',
+  path: '/predicciones',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RegistrarRoute = RegistrarRouteImport.update({
+  id: '/registrar',
+  path: '/registrar',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/analisis': typeof AnalisisRoute
+  '/historial': typeof HistorialRoute
+  '/predicciones': typeof PrediccionesRoute
+  '/registrar': typeof RegistrarRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/analisis': typeof AnalisisRoute
+  '/historial': typeof HistorialRoute
+  '/predicciones': typeof PrediccionesRoute
+  '/registrar': typeof RegistrarRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/analisis': typeof AnalisisRoute
+  '/historial': typeof HistorialRoute
+  '/predicciones': typeof PrediccionesRoute
+  '/registrar': typeof RegistrarRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/analisis' | '/historial' | '/predicciones' | '/registrar'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/analisis' | '/historial' | '/predicciones' | '/registrar'
+  id:
+    | '__root__'
+    | '/'
+    | '/analisis'
+    | '/historial'
+    | '/predicciones'
+    | '/registrar'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AnalisisRoute: typeof AnalisisRoute
+  HistorialRoute: typeof HistorialRoute
+  PrediccionesRoute: typeof PrediccionesRoute
+  RegistrarRoute: typeof RegistrarRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +94,43 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/analisis': {
+      id: '/analisis'
+      path: '/analisis'
+      fullPath: '/analisis'
+      preLoaderRoute: typeof AnalisisRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/historial': {
+      id: '/historial'
+      path: '/historial'
+      fullPath: '/historial'
+      preLoaderRoute: typeof HistorialRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/predicciones': {
+      id: '/predicciones'
+      path: '/predicciones'
+      fullPath: '/predicciones'
+      preLoaderRoute: typeof PrediccionesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/registrar': {
+      id: '/registrar'
+      path: '/registrar'
+      fullPath: '/registrar'
+      preLoaderRoute: typeof RegistrarRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AnalisisRoute: AnalisisRoute,
+  HistorialRoute: HistorialRoute,
+  PrediccionesRoute: PrediccionesRoute,
+  RegistrarRoute: RegistrarRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
