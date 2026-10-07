@@ -49,10 +49,12 @@ export const washingRecordService = {
   update(id: string, patch: Partial<WashingRecord>): WashingRecord | null {
     const records = readAll();
     const idx = records.findIndex((r) => r.id === id);
-    if (idx === -1) return null;
-    records[idx] = { ...records[idx], ...patch, id };
+    const current = idx >= 0 ? records[idx] : undefined;
+    if (!current) return null;
+    const next = Object.assign({}, current, patch, { id }) as WashingRecord;
+    records[idx] = next;
     writeAll(records);
-    return records[idx];
+    return next;
   },
 
   remove(id: string): boolean {

@@ -54,7 +54,7 @@ function pad(n: number) {
 export function generateDemoRecords(count = 45): WashingRecord[] {
   const rand = mulberry32(20261006);
   const pick = <T,>(arr: readonly T[]): T =>
-    arr[Math.floor(rand() * arr.length)];
+    arr[Math.floor(rand() * arr.length)] as T;
   const between = (min: number, max: number) =>
     Math.round(min + rand() * (max - min));
 
@@ -75,7 +75,7 @@ export function generateDemoRecords(count = 45): WashingRecord[] {
     const endTime = `${pad(Math.floor(endTotal / 60))}:${pad(endTotal % 60)}`;
 
     const serviceType = pick(SERVICE_TYPES);
-    const [pMin, pMax] = PRICE_BY_SERVICE[serviceType];
+    const [pMin, pMax] = PRICE_BY_SERVICE[serviceType] ?? [15000, 30000];
     const price = Math.round(between(pMin, pMax) / 500) * 500;
     const cost = Math.round((price * (0.25 + rand() * 0.2)) / 500) * 500;
 
@@ -94,7 +94,7 @@ export function generateDemoRecords(count = 45): WashingRecord[] {
       cost,
       profit: price - cost,
       motorcycleBrand: brand,
-      motorcycleModel: pick(MODELS[brand]),
+      motorcycleModel: pick(MODELS[brand] ?? ["Genérico"]),
       motorcycleYear: between(2012, 2026),
       engineCapacity: pick([100, 125, 150, 200, 250, 300, 400, 650] as const),
       motorcycleType: pick(MOTORCYCLE_TYPES),

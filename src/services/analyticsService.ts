@@ -119,7 +119,7 @@ export const analyticsService = {
       counts[d.getDay()]++;
     }
     const order = [1, 2, 3, 4, 5, 6, 0]; // Lunes primero
-    return order.map((i) => ({ label: names[i], value: counts[i] }));
+    return order.map((i) => ({ label: names[i] ?? "", value: counts[i] ?? 0 }));
   },
 
   demandByWeather(records: WashingRecord[]): DayBucket[] {

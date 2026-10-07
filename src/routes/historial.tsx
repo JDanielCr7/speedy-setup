@@ -177,7 +177,7 @@ function HistorialPage() {
             Aún no hay lavados registrados.
           </p>
           <div className="flex gap-2">
-            <Link to="/registrar" className="rounded-lg bg-primary px-3 py-2 text-sm font-semibold text-primary-foreground">
+            <Link to="/registrar" search={{ edit: undefined }} className="rounded-lg bg-primary px-3 py-2 text-sm font-semibold text-primary-foreground">
               Registrar lavado
             </Link>
             <button onClick={restoreDemo} className="rounded-lg border border-border px-3 py-2 text-sm">
