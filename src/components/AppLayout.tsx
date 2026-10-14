@@ -1,6 +1,7 @@
 import { Link, Outlet, useRouterState } from "@tanstack/react-router";
 import {
   BarChart3,
+  Calculator,
   Download,
   History,
   LayoutDashboard,
@@ -14,6 +15,7 @@ const NAV_ITEMS = [
   { to: "/registrar", label: "Registrar", icon: PlusCircle },
   { to: "/historial", label: "Historial", icon: History },
   { to: "/analisis", label: "Análisis", icon: BarChart3 },
+  { to: "/simulador", label: "Simulador", icon: Calculator },
   { to: "/predicciones", label: "Predicciones", icon: Sparkles },
 ] as const;
 
