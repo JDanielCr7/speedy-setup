@@ -14,6 +14,7 @@ import { Route as AnalisisRouteImport } from './routes/analisis'
 import { Route as HistorialRouteImport } from './routes/historial'
 import { Route as PrediccionesRouteImport } from './routes/predicciones'
 import { Route as RegistrarRouteImport } from './routes/registrar'
+import { Route as SimuladorRouteImport } from './routes/simulador'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -40,6 +41,11 @@ const RegistrarRoute = RegistrarRouteImport.update({
   path: '/registrar',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SimuladorRoute = SimuladorRouteImport.update({
+  id: '/simulador',
+  path: '/simulador',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -47,6 +53,7 @@ export interface FileRoutesByFullPath {
   '/historial': typeof HistorialRoute
   '/predicciones': typeof PrediccionesRoute
   '/registrar': typeof RegistrarRoute
+  '/simulador': typeof SimuladorRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -54,6 +61,7 @@ export interface FileRoutesByTo {
   '/historial': typeof HistorialRoute
   '/predicciones': typeof PrediccionesRoute
   '/registrar': typeof RegistrarRoute
+  '/simulador': typeof SimuladorRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -62,12 +70,25 @@ export interface FileRoutesById {
   '/historial': typeof HistorialRoute
   '/predicciones': typeof PrediccionesRoute
   '/registrar': typeof RegistrarRoute
+  '/simulador': typeof SimuladorRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/analisis' | '/historial' | '/predicciones' | '/registrar'
+  fullPaths:
+    | '/'
+    | '/analisis'
+    | '/historial'
+    | '/predicciones'
+    | '/registrar'
+    | '/simulador'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/analisis' | '/historial' | '/predicciones' | '/registrar'
+  to:
+    | '/'
+    | '/analisis'
+    | '/historial'
+    | '/predicciones'
+    | '/registrar'
+    | '/simulador'
   id:
     | '__root__'
     | '/'
@@ -75,6 +96,7 @@ export interface FileRouteTypes {
     | '/historial'
     | '/predicciones'
     | '/registrar'
+    | '/simulador'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -83,6 +105,7 @@ export interface RootRouteChildren {
   HistorialRoute: typeof HistorialRoute
   PrediccionesRoute: typeof PrediccionesRoute
   RegistrarRoute: typeof RegistrarRoute
+  SimuladorRoute: typeof SimuladorRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -122,6 +145,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RegistrarRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/simulador': {
+      id: '/simulador'
+      path: '/simulador'
+      fullPath: '/simulador'
+      preLoaderRoute: typeof SimuladorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -131,6 +161,7 @@ const rootRouteChildren: RootRouteChildren = {
   HistorialRoute: HistorialRoute,
   PrediccionesRoute: PrediccionesRoute,
   RegistrarRoute: RegistrarRoute,
+  SimuladorRoute: SimuladorRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
