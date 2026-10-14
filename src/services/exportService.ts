@@ -66,7 +66,14 @@ function toCsv(records: WashingRecord[]): string {
   return [CSV_HEADERS.join(","), ...rows].join("\n");
 }
 
-function download(filename: string, content: string, mime: string): void {
+export function rowsToCsv(rows: Record<string, unknown>[]): string {
+  const first = rows[0];
+  if (!first) return "";
+  const headers = Object.keys(first);
+  return [headers.join(","), ...rows.map((r) => headers.map((h) => csvEscape(r[h])).join(","))].join("\n");
+}
+
+export function download(filename: string, content: string, mime: string): void {
   const blob = new Blob(["\uFEFF" + content], { type: `${mime};charset=utf-8` });
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
