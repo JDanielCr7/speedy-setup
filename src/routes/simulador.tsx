@@ -250,9 +250,9 @@ function SimuladorPage() {
     set({
       climate: {
         ...params.climate,
-        sunnyEffectPct: Math.round((g.sunny ?? 0) * 10) / 10,
-        cloudyEffectPct: Math.round((g.cloudy ?? 0) * 10) / 10,
-        rainyEffectPct: Math.round((g.rainy ?? 0) * 10) / 10,
+        sunnyEffectPct: Math.round((g["sunny"] ?? 0) * 10) / 10,
+        cloudyEffectPct: Math.round((g["cloudy"] ?? 0) * 10) / 10,
+        rainyEffectPct: Math.round((g["rainy"] ?? 0) * 10) / 10,
       },
     });
   };
